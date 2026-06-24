@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>線上點餐 - 南興城早餐店</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .cart-summary {
+            background: var(--color-bg-alt);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            border: 2px solid var(--color-primary);
+            cursor: pointer;
+        }
+        .cart-summary:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">南</div>
+                <div class="logo-text">南興城早餐店</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">主頁</a></li>
+                    <li><a href="menu.html">菜單</a></li>
+                    <li><a href="about.html">關於南興城</a></li>
+                    <li><a href="service.html">訂購服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                    <li><a href="order.html" class="nav-cta active">線上點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section container">
+        <div class="order-header">
+            <h1 class="section-title" style="margin-bottom: 0;">開始點餐</h1>
+            <div class="cart-summary" onclick="window.location.href='cart.html'">
+                🛒 購物車 (0)
+            </div>
+        </div>
+        
+        <p style="text-align: center; color: var(--color-text-light); margin-bottom: 3rem;">請選擇您想要的餐點類別，進入後可挑選口味。</p>
+        
+        <div class="menu-grid">
+            
+            <a href="dish.html?id=burger-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/pork_burger.jpg" alt="好堡堡系列" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">好堡堡系列</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">蛋堡、豬肉滿福堡、雞腿堡等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="dish.html?id=toast-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/Bacon_and_Egg_Toast.jpg" alt="現烤吐司系列" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">現烤吐司系列</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">果醬吐司、肉鬆蛋、總匯等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="dish.html?id=eggpancake-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/Pork_Chop_Egg_Pancake.jpg" alt="Q蛋餅系列" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">Q蛋餅系列</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">原味、火腿、玉米、鮪魚等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="dish.html?id=bagel-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/sandwich.jpg" alt="三明治系列" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">三明治系列</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">果醬三明治、火腿蛋、鮪魚蛋等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="dish.html?id=noodles-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/Black_pepper_teppanyaki_noodles.jpg" alt="麵麵俱到" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">麵麵俱到</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">鐵板麵、炒麵、鍋燒麵等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="dish.html?id=drinks-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/breakfast_drinks.png" alt="冷熱飲" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">冷熱飲</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">紅茶、奶茶、豆漿、咖啡等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="dish.html?id=snacks-series" class="menu-item-link">
+                <div class="menu-category" style="cursor: pointer;">
+                    <div class="menu-category-img-container">
+                        <img src="images/Fried_food1.jpg" alt="FUN點心" class="menu-category-img">
+                    </div>
+                    <div class="menu-category-content" style="text-align: center; padding: 1.5rem;">
+                        <h3 class="menu-category-title" style="justify-content: center; border-bottom: none; margin-bottom: 0.5rem;">FUN點心</h3>
+                        <p style="color: var(--color-text-light); font-size: 0.9rem;">煎餃、薯條、雞塊、蔥抓餅等</p>
+                        <span class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">選擇口味</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 南興城有氧早餐店. All rights reserved.</p>
+    </footer>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

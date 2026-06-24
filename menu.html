@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>菜單 - 南興城早餐店</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .menu-item-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px dashed #eee;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            background-color: var(--color-bg-alt);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">南</div>
+                <div class="logo-text">南興城早餐店</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">主頁</a></li>
+                    <li><a href="menu.html" class="active">菜單</a></li>
+                    <li><a href="about.html">關於南興城</a></li>
+                    <li><a href="service.html">訂購服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                    <li><a href="order.html" class="nav-cta">線上點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section container">
+        <h1 class="section-title">完整美味菜單</h1>
+        <p style="text-align: center; color: var(--color-text-light); margin-bottom: 2rem;">點擊餐點可以查看介紹喔！如需點餐，請點擊右上角「線上點餐」。</p>
+        
+        <div class="menu-grid">
+            <!-- 好堡堡 -->
+            <div class="menu-category" id="burger">
+                <div class="menu-category-img-container">
+                    <img src="images/pork_burger.jpg" alt="好堡堡" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">好堡堡</h3>
+                    <a href="dish.html?name=原味蛋堡&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">原味蛋堡</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=豬肉滿福堡&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬肉滿福堡</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=薯餅蛋堡&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">薯餅蛋堡</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=雞排蛋堡&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞排蛋堡</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=鮪魚蛋堡&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮪魚蛋堡</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=培根蛋堡&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">培根蛋堡</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=豬排蛋堡&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬排蛋堡</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=牛肉蛋堡&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">牛肉蛋堡</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=雞柳蛋堡&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞柳蛋堡</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=香檸雞柳蛋堡&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">香檸雞柳蛋堡</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=燻雞蛋堡&price=50&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">燻雞蛋堡</span><span class="menu-item-price">50</span></div></a>
+                    <a href="dish.html?name=鱈魚蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鱈魚蛋堡</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=香煎雞腿蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">香煎雞腿蛋堡</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=燒烤雞腿蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">燒烤雞腿蛋堡</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=藍帶豬排蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">藍帶豬排蛋堡</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=藍帶雞排蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">藍帶雞排蛋堡</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=咔啦雞腿蛋堡&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">咔啦雞腿蛋堡</span><span class="menu-item-price">55</span></div></a>
+                </div>
+            </div>
+
+            <!-- 烤吐司 -->
+            <div class="menu-category" id="toast">
+                <div class="menu-category-img-container">
+                    <img src="images/Bacon_and_Egg_Toast.jpg" alt="烤吐司" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">烤吐司</h3>
+                    <a href="dish.html?name=草莓果醬吐司&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">草莓果醬吐司</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=花生果醬吐司&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">花生果醬吐司</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=藍莓果醬吐司&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">藍莓果醬吐司</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=巧克力果醬吐司&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">巧克力果醬吐司</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=夾蛋吐司&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">夾蛋吐司</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=肉鬆蛋吐司&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">肉鬆蛋吐司</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=玉米蛋吐司&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">玉米蛋吐司</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=蔬菜蛋吐司&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">蔬菜蛋吐司</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=火腿蛋吐司&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">火腿蛋吐司</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=培根蛋吐司&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">培根蛋吐司</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=鮪魚蛋吐司&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮪魚蛋吐司</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=豬肉蛋吐司&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬肉蛋吐司</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=雞排蛋吐司&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞排蛋吐司</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=豬排蛋吐司&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬排蛋吐司</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=雞柳蛋吐司&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞柳蛋吐司</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=豬柳蛋吐司&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬柳蛋吐司</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=香檸雞柳吐司&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">香檸雞柳吐司</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=燻雞蛋吐司&price=50&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">燻雞蛋吐司</span><span class="menu-item-price">50</span></div></a>
+                    <a href="dish.html?name=總匯三明治&price=50&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">總匯三明治</span><span class="menu-item-price">50</span></div></a>
+                    <a href="dish.html?name=鱈魚蛋吐司&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鱈魚蛋吐司</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=雞腿蛋吐司&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞腿蛋吐司</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=藍帶豬排吐司&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">藍帶豬排吐司</span><span class="menu-item-price">55</span></div></a>
+                    <a href="dish.html?name=咔啦雞腿吐司&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">咔啦雞腿吐司</span><span class="menu-item-price">55</span></div></a>
+                </div>
+            </div>
+
+            <!-- Ｑ蛋餅 -->
+            <div class="menu-category" id="eggpancake">
+                <div class="menu-category-img-container">
+                    <img src="images/Pork_Chop_Egg_Pancake.jpg" alt="Q蛋餅" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">Q蛋餅</h3>
+                    <a href="dish.html?name=原味Q蛋餅&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">原味Q蛋餅</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=玉米Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">玉米Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=火腿Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">火腿Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=肉鬆Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">肉鬆Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=蔬菜Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">蔬菜Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=起士Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">起士Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=培根Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">培根Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=熱狗Q蛋餅&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">熱狗Q蛋餅</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=鮪魚Q蛋餅&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮪魚Q蛋餅</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=薯餅Q蛋餅&price=40&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">薯餅Q蛋餅</span><span class="menu-item-price">40</span></div></a>
+                    <a href="dish.html?name=豬排Q蛋餅&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬排Q蛋餅</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=豬柳Q蛋餅&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬柳Q蛋餅</span><span class="menu-item-price">45</span></div></a>
+                </div>
+            </div>
+
+            <!-- 三明治 -->
+            <div class="menu-category" id="bagel">
+                <div class="menu-category-img-container">
+                    <img src="images/sandwich.jpg" alt="三明治" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">三明治</h3>
+                    <a href="dish.html?name=草莓果醬三明治&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">草莓果醬三明治</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=花生果醬三明治&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">花生果醬三明治</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=巧克力果醬三明治&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">巧克力果醬三明治</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=火腿蛋三明治&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">火腿蛋三明治</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=培根蛋三明治&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">培根蛋三明治</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=起士蛋三明治&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">起士蛋三明治</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=鮪魚蛋三明治&price=50&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮪魚蛋三明治</span><span class="menu-item-price">50</span></div></a>
+                    <a href="dish.html?name=豬排蛋三明治&price=55&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豬排蛋三明治</span><span class="menu-item-price">55</span></div></a>
+                </div>
+            </div>
+
+            <!-- 麵麵俱到 -->
+            <div class="menu-category" id="noodles">
+                <div class="menu-category-img-container">
+                    <img src="images/Black_pepper_teppanyaki_noodles.jpg" alt="麵麵俱到" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">麵麵俱到</h3>
+                    <a href="dish.html?name=蘑菇鐵板麵&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">蘑菇鐵板麵</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=黑胡椒鐵板麵&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">黑胡椒鐵板麵</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=麻油雞炒麵&price=45&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">麻油雞炒麵</span><span class="menu-item-price">45</span></div></a>
+                    <a href="dish.html?name=鍋燒冬粉&price=65&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鍋燒冬粉</span><span class="menu-item-price">65</span></div></a>
+                    <a href="dish.html?name=鍋燒意麵&price=65&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鍋燒意麵</span><span class="menu-item-price">65</span></div></a>
+                    <a href="dish.html?name=鍋燒雞絲麵&price=65&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鍋燒雞絲麵</span><span class="menu-item-price">65</span></div></a>
+                    <a href="dish.html?name=鍋燒烏龍麵&price=65&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鍋燒烏龍麵</span><span class="menu-item-price">65</span></div></a>
+                </div>
+            </div>
+
+            <!-- FUN點心 -->
+            <div class="menu-category" id="snacks">
+                <div class="menu-category-img-container">
+                    <img src="images/Fried_food1.jpg" alt="FUN點心" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">FUN點心</h3>
+                    <a href="dish.html?name=荷包蛋&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">荷包蛋</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=熱狗&price=15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">熱狗</span><span class="menu-item-price">15</span></div></a>
+                    <a href="dish.html?name=煎餃&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">煎餃</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=鍋貼&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鍋貼</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=一口餃&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">一口餃</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=雞塊&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞塊</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=雞米花&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雞米花</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=薯條&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">薯條</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=小肉豆&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">小肉豆</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=地瓜薯&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">地瓜薯</span><span class="menu-item-price">25</span></div></a>
+                    <a href="dish.html?name=脆薯&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">脆薯</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=薯餅(2塊)&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">薯餅(2塊)</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=洋蔥圈&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">洋蔥圈</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=港式蘿蔔糕&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">港式蘿蔔糕</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=咔啦一口雞塊&price=30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">咔啦一口雞塊</span><span class="menu-item-price">30</span></div></a>
+                    <a href="dish.html?name=蔥抓餅加蛋&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">蔥抓餅加蛋</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=翡翠抓餅加蛋&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">翡翠抓餅加蛋</span><span class="menu-item-price">35</span></div></a>
+                    <a href="dish.html?name=香檸雞柳條&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">香檸雞柳條</span><span class="menu-item-price">35</span></div></a>
+                </div>
+            </div>
+
+            <!-- 冷熱飲 -->
+            <div class="menu-category" id="drinks">
+                <div class="menu-category-img-container">
+                    <img src="images/breakfast_drinks.png" alt="冷熱飲" class="menu-category-img">
+                </div>
+                <div class="menu-category-content">
+                    <h3 class="menu-category-title">冷熱飲 (中/大)</h3>
+                    <a href="dish.html?name=紅茶&price=10 / 15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">紅茶</span><span class="menu-item-price">10 / 15</span></div></a>
+                    <a href="dish.html?name=綠茶&price=10 / 15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">綠茶</span><span class="menu-item-price">10 / 15</span></div></a>
+                    <a href="dish.html?name=豆漿&price=10 / 15&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">豆漿</span><span class="menu-item-price">10 / 15</span></div></a>
+                    <a href="dish.html?name=奶茶&price=15 / 20&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">奶茶</span><span class="menu-item-price">15 / 20</span></div></a>
+                    <a href="dish.html?name=奶綠&price=15 / 20&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">奶綠</span><span class="menu-item-price">15 / 20</span></div></a>
+                    <a href="dish.html?name=可樂&price=20 / 25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">可樂</span><span class="menu-item-price">20 / 25</span></div></a>
+                    <a href="dish.html?name=雪碧&price=20 / 25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">雪碧</span><span class="menu-item-price">20 / 25</span></div></a>
+                    <a href="dish.html?name=水果茶&price=20 / 25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">水果茶</span><span class="menu-item-price">20 / 25</span></div></a>
+                    <a href="dish.html?name=檸檬紅茶&price=20 / 25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">檸檬紅茶</span><span class="menu-item-price">20 / 25</span></div></a>
+                    <a href="dish.html?name=綠茶多酚&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">綠茶多酚</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=柳橙汁&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">柳橙汁</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=薏仁漿&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">薏仁漿</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=玉米濃湯&price=20 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">玉米濃湯</span><span class="menu-item-price">20 / 30</span></div></a>
+                    <a href="dish.html?name=咖啡&price=20 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">咖啡</span><span class="menu-item-price">20 / 30</span></div></a>
+                    <a href="dish.html?name=鮮奶茶&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮮奶茶</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=鮮奶綠&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮮奶綠</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=巧克力牛奶&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">巧克力牛奶</span><span class="menu-item-price">25 / 30</span></div></a>
+                    <a href="dish.html?name=鮮奶咖啡&price=30 / 35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮮奶咖啡</span><span class="menu-item-price">30 / 35</span></div></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 南興城有氧早餐店. All rights reserved.</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

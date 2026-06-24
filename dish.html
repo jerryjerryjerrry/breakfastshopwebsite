@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餐點詳情 - 南興城早餐店</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dish-detail-container {
+            max-width: 900px;
+            margin: 4rem auto;
+            background: var(--color-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            .dish-detail-container {
+                flex-direction: row;
+            }
+        }
+        .dish-image-container {
+            flex: 1;
+            height: 300px;
+        }
+        @media (min-width: 768px) {
+            .dish-image-container {
+                height: 480px;
+            }
+        }
+        .dish-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .dish-info {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .dish-title {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .dish-price {
+            font-size: 1.5rem;
+            color: var(--color-accent);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .dish-desc {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--color-primary);
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        .back-link:hover {
+            color: var(--color-primary-dark);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">南</div>
+                <div class="logo-text">南興城早餐店</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">主頁</a></li>
+                    <li><a href="menu.html" class="active">菜單</a></li>
+                    <li><a href="about.html">關於南興城</a></li>
+                    <li><a href="service.html">訂購服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                    <li><a href="order.html" class="nav-cta">線上點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <a href="menu.html" class="back-link">← 回到菜單</a>
+        
+        <div class="dish-detail-container">
+            <div class="dish-image-container">
+                <img id="dish-img" src="" alt="餐點圖片">
+            </div>
+            <div class="dish-info">
+                <h1 class="dish-title" id="dish-name">載入中...</h1>
+                <div class="dish-price" style="display: none;">NT$ <span id="dish-price">--</span></div>
+                <p class="dish-desc" id="dish-desc">正在為您準備美味介紹...</p>
+                
+                <div id="flavor-container" style="display: none; margin-bottom: 1.5rem;">
+                    <label for="flavor-select" style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--color-secondary);">選擇口味與品項：</label>
+                    <select id="flavor-select" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem; font-family: inherit;">
+                        <!-- Options will be populated here -->
+                    </select>
+                </div>
+
+                <div id="size-container" style="display: none; margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--color-secondary);">選擇大小：</label>
+                    <div id="size-buttons" style="display: flex; gap: 0.5rem;">
+                        <!-- Size buttons will be populated here -->
+                    </div>
+                </div>
+
+                <div id="quantity-container" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                    <label for="quantity" style="font-weight: 500; color: var(--color-secondary);">數量：</label>
+                    <input type="number" id="quantity" value="1" min="1" style="width: 80px; padding: 0.5rem; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem; text-align: center;">
+                    
+                    <div style="margin-left: auto; font-size: 1.25rem; font-weight: 700; color: var(--color-accent);">
+                        總計: NT$ <span id="total-price">0</span>
+                    </div>
+                </div>
+                
+                <button id="add-to-cart-btn" class="btn btn-primary" onclick="alert('已加入購物車！(目前為純前端展示)')">加入購物車</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 南興城有氧早餐店. All rights reserved.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let dishId = urlParams.get('id');
+            let mode = urlParams.get('mode');
+            
+            if (mode === 'view') {
+                document.getElementById('quantity-container').style.display = 'none';
+                document.getElementById('add-to-cart-btn').style.display = 'none';
+            }
+
+            if (!dishId) {
+                // Single item view without ID
+                let dishName = urlParams.get('name');
+                let dishPrice = urlParams.get('price');
+                if (dishName) {
+                    document.getElementById('dish-name').textContent = dishName;
+                    document.getElementById('dish-price').textContent = dishPrice || "請參考菜單";
+                    document.getElementById('dish-price').style.display = 'block';
+                    document.getElementById('dish-desc').textContent = "南興城用心製作每一份餐點，選用新鮮食材，為您帶來美好的一天。詳細介紹陸續新增中，敬請期待！";
+                    if (dishName.includes('堡')) {
+                        document.getElementById('dish-img').src = "images/pork_burger.jpg";
+                    } else if (dishName.includes('吐司') || dishName.includes('土司') || dishName.includes('toast') || dishName.includes('Toast')) {
+                        document.getElementById('dish-img').src = "images/Bacon_and_Egg_Toast.jpg";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else if (dishName.includes('蛋餅')) {
+                        document.getElementById('dish-img').src = "images/Pork_Chop_Egg_Pancake.jpg";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else if (dishName.includes('三明治')) {
+                        document.getElementById('dish-img').src = "images/sandwich.jpg";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else if (dishName.includes('鐵板麵') || dishName.includes('炒麵') || dishName.includes('麵') || dishName.includes('粉')) {
+                        document.getElementById('dish-img').src = "images/Black_pepper_teppanyaki_noodles.jpg";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else if (dishName.includes('茶') || dishName.includes('奶') || dishName.includes('漿') || dishName.includes('湯') || dishName.includes('咖啡') || dishName.includes('汁') || dishName.includes('可樂') || dishName.includes('雪碧')) {
+                        document.getElementById('dish-img').src = "images/breakfast_drinks.png";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else if (dishName.includes('餃') || dishName.includes('貼') || dishName.includes('塊') || dishName.includes('米花') || dishName.includes('薯') || dishName.includes('豆') || dishName.includes('圈') || dishName.includes('糕') || dishName.includes('餅') || dishName.includes('條') || dishName.includes('熱狗') || dishName.includes('蛋')) {
+                        document.getElementById('dish-img').src = "images/Fried_food1.jpg";
+                        document.getElementById('dish-img').style.objectPosition = 'center';
+                    } else {
+                        document.getElementById('dish-img').src = "images/placeholder_food.png";
+                    }
+                    document.title = dishName + " - 南興城早餐店";
+                }
+                return;
+            }
+
+            let dishData = getDishData(dishId);
+            
+            document.getElementById('dish-name').textContent = dishData.name;
+            document.getElementById('dish-desc').textContent = dishData.description;
+            document.getElementById('dish-img').src = dishData.image;
+            document.title = dishData.name + " - 南興城早餐店";
+
+            const flavorContainer = document.getElementById('flavor-container');
+            const flavorSelect = document.getElementById('flavor-select');
+            const sizeContainer = document.getElementById('size-container');
+            const sizeButtons = document.getElementById('size-buttons');
+            const quantityInput = document.getElementById('quantity');
+            const totalPriceSpan = document.getElementById('total-price');
+
+            let currentUnitPrice = dishData.basePrice || 0;
+
+            function updateTotalPrice() {
+                const qty = parseInt(quantityInput.value) || 1;
+                totalPriceSpan.textContent = currentUnitPrice * qty;
+            }
+
+            function renderSizes(sizes) {
+                sizeContainer.style.display = 'block';
+                sizeButtons.innerHTML = '';
+                sizes.forEach((size, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'btn';
+                    btn.style.padding = '0.5rem 1rem';
+                    btn.style.backgroundColor = index === 0 ? 'var(--color-primary)' : 'var(--color-bg-alt)';
+                    btn.style.color = index === 0 ? '#fff' : 'var(--color-text)';
+                    btn.style.border = '1px solid var(--color-primary)';
+                    btn.textContent = size.label;
+                    btn.dataset.price = size.price;
+                    
+                    btn.onclick = (e) => {
+                        // Reset all buttons
+                        Array.from(sizeButtons.children).forEach(b => {
+                            b.style.backgroundColor = 'var(--color-bg-alt)';
+                            b.style.color = 'var(--color-text)';
+                        });
+                        // Highlight selected
+                        e.target.style.backgroundColor = 'var(--color-primary)';
+                        e.target.style.color = '#fff';
+                        
+                        currentUnitPrice = parseInt(e.target.dataset.price);
+                        updateTotalPrice();
+                    };
+                    sizeButtons.appendChild(btn);
+                });
+                // Select first size by default
+                currentUnitPrice = sizes[0].price;
+                updateTotalPrice();
+            }
+
+            if (dishData.flavors && dishData.flavors.length > 0) {
+                flavorContainer.style.display = 'block';
+                flavorSelect.innerHTML = '';
+                
+                dishData.flavors.forEach((flavor, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    // Only show price in option if it doesn't have multiple sizes
+                    if (flavor.sizes) {
+                        option.textContent = flavor.name;
+                    } else {
+                        option.textContent = `${flavor.name} (NT$ ${flavor.price})`;
+                        option.dataset.price = flavor.price;
+                    }
+                    flavorSelect.appendChild(option);
+                });
+
+                function handleFlavorChange() {
+                    const selectedFlavor = dishData.flavors[flavorSelect.selectedIndex];
+                    if (selectedFlavor.sizes) {
+                        renderSizes(selectedFlavor.sizes);
+                    } else {
+                        sizeContainer.style.display = 'none';
+                        currentUnitPrice = selectedFlavor.price;
+                        updateTotalPrice();
+                    }
+                }
+
+                flavorSelect.addEventListener('change', handleFlavorChange);
+                handleFlavorChange(); // init
+            } else {
+                updateTotalPrice();
+            }
+
+            quantityInput.addEventListener('input', updateTotalPrice);
+            quantityInput.addEventListener('change', updateTotalPrice);
+
+            // Hook up Add to Cart functionality
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            if (addToCartBtn) {
+                addToCartBtn.onclick = () => {
+                    const qty = parseInt(quantityInput.value) || 1;
+                    
+                    let flavorName = "原味";
+                    if (dishData.flavors && dishData.flavors.length > 0) {
+                        flavorName = dishData.flavors[flavorSelect.selectedIndex].name;
+                    }
+                    
+                    let sizeName = "";
+                    if (dishData.flavors && dishData.flavors.length > 0 && dishData.flavors[flavorSelect.selectedIndex].sizes) {
+                        const activeBtn = Array.from(sizeButtons.children).find(b => b.style.backgroundColor === 'var(--color-primary)');
+                        if (activeBtn) sizeName = activeBtn.textContent;
+                    }
+
+                    const cartItem = {
+                        id: dishId,
+                        name: dishData.name,
+                        flavorName: flavorName,
+                        sizeName: sizeName,
+                        price: currentUnitPrice,
+                        quantity: qty,
+                        image: dishData.image
+                    };
+
+                    CartManager.addItem(cartItem);
+                    
+                    let itemDesc = flavorName;
+                    if (sizeName) itemDesc += ` (${sizeName})`;
+                    
+                    alert(`已將 ${qty} 份「${itemDesc}」加入購物車！`);
+                };
+            }
+        });
+    </script>
+</body>
+</html>

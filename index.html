@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南興城早餐店 - 首頁</title>
+    <meta name="description" content="南興城早餐店，提供最美味、新鮮的早晨活力。來一份好堡堡開啟美好的一天！">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">南</div>
+                <div class="logo-text">南興城早餐店</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">主頁</a></li>
+                    <li><a href="menu.html">菜單</a></li>
+                    <li><a href="about.html">關於南興城</a></li>
+                    <li><a href="service.html">訂購服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                    <li><a href="order.html" class="nav-cta">線上點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">美味的早晨<br>從這裡開始</h1>
+                    <p class="hero-subtitle">南興城招牌早餐，滿滿的元氣與活力！手工製作，新鮮食材，讓您每一口都充滿幸福感。</p>
+                    <a href="menu.html" class="btn btn-primary">查看菜單</a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="images/hero_burger.png" alt="美味招牌漢堡" class="parallax-element hero-burger-img">
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="dish-search">
+                <input type="text" id="search-input" class="search-input" placeholder="想吃點什麼？輸入菜色名稱搜尋...">
+                <button id="search-btn" class="btn btn-accent">搜尋菜品</button>
+            </div>
+            <div id="search-results" style="margin-top: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <!-- Search results will appear here -->
+            </div>
+        </section>
+        
+        <section class="section container">
+            <h2 class="section-title">熱門推薦</h2>
+            <div class="menu-grid">
+                <a href="dish.html?name=原味蛋堡&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">原味蛋堡</span><span class="menu-item-price">25</span></div></a>
+                <a href="dish.html?name=原味Q蛋餅&price=25&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">原味Q蛋餅</span><span class="menu-item-price">25</span></div></a>
+                <a href="dish.html?name=蘑菇鐵板麵&price=35&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">蘑菇鐵板麵</span><span class="menu-item-price">35</span></div></a>
+                <a href="dish.html?name=鮮奶茶&price=25 / 30&mode=view" class="menu-item-link"><div class="menu-item"><span class="menu-item-name">鮮奶茶</span><span class="menu-item-price">25 / 30</span></div></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 南興城有氧早餐店. All rights reserved.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            const resultsContainer = document.getElementById('search-results');
+
+            function performSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                resultsContainer.innerHTML = '';
+                
+                if (!query) {
+                    return; // Do nothing if query is empty
+                }
+
+                let found = false;
+                
+                // Add some basic styles for the result container
+                const resultsWrapper = document.createElement('div');
+                resultsWrapper.style.backgroundColor = 'var(--color-white)';
+                resultsWrapper.style.borderRadius = '12px';
+                resultsWrapper.style.padding = '1rem';
+                resultsWrapper.style.boxShadow = 'var(--shadow-md)';
+                resultsWrapper.style.marginTop = '1rem';
+                
+                const title = document.createElement('h3');
+                title.textContent = `「${query}」的搜尋結果：`;
+                title.style.marginBottom = '1rem';
+                title.style.color = 'var(--color-secondary)';
+                resultsWrapper.appendChild(title);
+
+                for (const [seriesId, seriesInfo] of Object.entries(menuData)) {
+                    for (const flavor of seriesInfo.flavors) {
+                        if (flavor.name.toLowerCase().includes(query)) {
+                            found = true;
+                            
+                            let priceDisplay = flavor.price;
+                            if (flavor.sizes) {
+                                priceDisplay = flavor.sizes.map(s => s.price).join(' / ');
+                            }
+                            
+                            const resultItem = document.createElement('a');
+                            resultItem.href = `dish.html?name=${encodeURIComponent(flavor.name)}&price=${encodeURIComponent(priceDisplay)}&mode=view`;
+                            resultItem.className = 'menu-item-link';
+                            resultItem.style.textDecoration = 'none';
+                            resultItem.style.color = 'inherit';
+                            resultItem.style.display = 'block';
+                            
+                            resultItem.innerHTML = `
+                                <div style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px dashed #eee; transition: background-color 0.2s;">
+                                    <span style="font-weight: 500;">${flavor.name}</span>
+                                    <span style="color: var(--color-accent); font-weight: 700;">${priceDisplay}</span>
+                                </div>
+                            `;
+                            
+                            resultItem.addEventListener('mouseover', function() {
+                                this.querySelector('div').style.backgroundColor = 'var(--color-bg-alt)';
+                            });
+                            resultItem.addEventListener('mouseout', function() {
+                                this.querySelector('div').style.backgroundColor = 'transparent';
+                            });
+
+                            resultsWrapper.appendChild(resultItem);
+                        }
+                    }
+                }
+                
+                if (!found) {
+                    const noResult = document.createElement('p');
+                    noResult.textContent = '找不到符合條件的餐點，請嘗試其他關鍵字。';
+                    noResult.style.color = 'var(--color-text-light)';
+                    resultsWrapper.appendChild(noResult);
+                }
+
+                resultsContainer.appendChild(resultsWrapper);
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

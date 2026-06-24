@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車 - 南興城早餐店</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-container {
+            background: var(--color-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 0.25rem;
+        }
+        .cart-item-desc {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .qty-btn {
+            background: var(--color-bg-alt);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+        .qty-btn:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        .remove-btn {
+            color: #ff4d4f;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .cart-summary-box {
+            background: var(--color-bg-alt);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: right;
+            margin-top: 1rem;
+        }
+        .checkout-form {
+            background: var(--color-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--color-text-light);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">南</div>
+                <div class="logo-text">南興城早餐店</div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">主頁</a></li>
+                    <li><a href="menu.html">菜單</a></li>
+                    <li><a href="about.html">關於南興城</a></li>
+                    <li><a href="service.html">訂購服務</a></li>
+                    <li><a href="contact.html">聯絡我們</a></li>
+                    <li><a href="order.html" class="nav-cta active">線上點餐</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section container">
+        <a href="order.html" style="display: inline-block; margin-bottom: 2rem; color: var(--color-primary); font-weight: 600; text-decoration: none;">← 繼續點餐</a>
+        
+        <h1 class="section-title">我的購物車</h1>
+
+        <div id="cart-content">
+            <!-- Dynamic Cart Content -->
+        </div>
+
+        <div id="checkout-section" style="display: none;">
+            <div class="checkout-form">
+                <h3 style="margin-bottom: 1.5rem; color: var(--color-secondary);">確認訂單資訊</h3>
+                <form id="order-form">
+                    <div class="form-group">
+                        <label for="customer-name">取餐人姓名</label>
+                        <input type="text" id="customer-name" name="顧客姓名" required placeholder="例如：王小明">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">聯絡電話</label>
+                        <input type="tel" id="customer-phone" name="聯絡電話" required placeholder="例如：0912345678">
+                    </div>
+                    <div class="form-group">
+                        <label for="pickup-time">預計取餐時間</label>
+                        <select id="pickup-time" name="預計取餐時間" required>
+                            <option value="">請選擇取餐時間</option>
+                            <option value="15分鐘後">15 分鐘後</option>
+                            <option value="30分鐘後">30 分鐘後</option>
+                            <option value="1小時後">1 小時後</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">送出訂單</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 南興城有氧早餐店. All rights reserved.</p>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartContent = document.getElementById('cart-content');
+            const checkoutSection = document.getElementById('checkout-section');
+            const orderForm = document.getElementById('order-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            function populateTimeOptions() {
+                const select = document.getElementById('pickup-time');
+                select.innerHTML = '<option value="">請選擇取餐時間</option>';
+                
+                const now = new Date();
+                const openingTime = new Date(now);
+                openingTime.setHours(5, 30, 0, 0); // Opens at 05:30
+                const closingTime = new Date(now);
+                closingTime.setHours(13, 0, 0, 0); // Closes at 13:00
+                
+                const latestPickupTime = new Date(closingTime.getTime() - 20 * 60000); // 12:40 is the latest
+                
+                let firstAvailableTime = new Date(now.getTime() + 10 * 60000); // Now + 10 mins
+                
+                if (firstAvailableTime < openingTime) {
+                    firstAvailableTime = new Date(openingTime);
+                }
+                
+                const submitBtn = document.getElementById('submit-btn');
+                
+                if (firstAvailableTime > latestPickupTime) {
+                    const opt = document.createElement('option');
+                    opt.value = "";
+                    opt.textContent = "今日點餐已結束 (營業至 13:00)";
+                    select.appendChild(opt);
+                    select.disabled = true;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = "非營業時間";
+                    submitBtn.style.backgroundColor = "#ccc";
+                    return;
+                }
+                
+                select.disabled = false;
+                submitBtn.disabled = false;
+                submitBtn.textContent = "送出訂單";
+                submitBtn.style.backgroundColor = ""; // Reset to default
+                
+                const formatTime = (date) => {
+                    return date.getHours().toString().padStart(2, '0') + ':' + 
+                           date.getMinutes().toString().padStart(2, '0');
+                };
+
+                const minOpt = document.createElement('option');
+                const firstTimeStr = formatTime(firstAvailableTime);
+                minOpt.value = firstTimeStr;
+                minOpt.textContent = `盡快 (${firstTimeStr})`;
+                select.appendChild(minOpt);
+                
+                let addedTimes = new Set();
+                addedTimes.add(firstTimeStr);
+                
+                // Round to next 10 minute interval
+                let nextSlot = new Date(firstAvailableTime);
+                let mins = nextSlot.getMinutes();
+                let remainder = mins % 10;
+                if (remainder !== 0) {
+                    nextSlot.setMinutes(mins + (10 - remainder));
+                } else {
+                    nextSlot.setMinutes(mins + 10);
+                }
+                nextSlot.setSeconds(0, 0);
+                
+                while (nextSlot <= latestPickupTime) {
+                    let timeStr = formatTime(nextSlot);
+                    if (!addedTimes.has(timeStr)) {
+                        const opt = document.createElement('option');
+                        opt.value = timeStr;
+                        opt.textContent = timeStr;
+                        select.appendChild(opt);
+                        addedTimes.add(timeStr);
+                    }
+                    nextSlot = new Date(nextSlot.getTime() + 10 * 60000);
+                }
+            }
+
+            function renderCart() {
+                const cart = CartManager.getCart();
+                
+                if (cart.length === 0) {
+                    cartContent.innerHTML = `
+                        <div class="cart-container empty-cart">
+                            <h3 style="margin-bottom: 1rem; color: var(--color-secondary);">購物車是空的</h3>
+                            <p style="margin-bottom: 2rem;">您還沒有選擇任何餐點，快去看看有什麼好吃的吧！</p>
+                            <a href="order.html" class="btn btn-primary">前往點餐</a>
+                        </div>
+                    `;
+                    checkoutSection.style.display = 'none';
+                    return;
+                }
+
+                checkoutSection.style.display = 'block';
+                populateTimeOptions(); // Update times whenever cart renders
+                let totalAmount = 0;
+                
+                let html = '<div class="cart-container">';
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    totalAmount += itemTotal;
+                    
+                    let desc = '';
+                    if (item.flavorName && item.flavorName !== '原味') desc += item.flavorName + ' ';
+                    if (item.sizeName) desc += item.sizeName;
+                    if (!desc) desc = '標準';
+
+                    html += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-title">${item.name}</div>
+                                <div class="cart-item-desc">口味/大小：${desc} | 單價：NT$ ${item.price}</div>
+                            </div>
+                            <div class="cart-item-controls">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <button class="qty-btn" type="button" onclick="updateQty(${index}, ${item.quantity - 1})">-</button>
+                                    <span style="font-weight: 600; width: 20px; text-align: center;">${item.quantity}</span>
+                                    <button class="qty-btn" type="button" onclick="updateQty(${index}, ${item.quantity + 1})">+</button>
+                                </div>
+                                <div style="font-weight: 700; color: var(--color-accent); width: 80px; text-align: right;">
+                                    NT$ ${itemTotal}
+                                </div>
+                                <button class="remove-btn" type="button" onclick="removeItem(${index})" title="移除">🗑️</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    </div>
+                    <div class="cart-summary-box">
+                        <div style="font-size: 1.2rem; color: var(--color-text-light); margin-bottom: 0.5rem;">共 ${cart.reduce((s,i)=>s+i.quantity,0)} 項商品</div>
+                        <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent);">總計金額：NT$ ${totalAmount}</div>
+                    </div>
+                `;
+
+                cartContent.innerHTML = html;
+            }
+
+            window.updateQty = function(index, newQty) {
+                CartManager.updateQuantity(index, newQty);
+                renderCart();
+            };
+
+            window.removeItem = function(index) {
+                if (confirm('確定要移除此餐點嗎？')) {
+                    CartManager.removeItem(index);
+                    renderCart();
+                }
+            };
+
+            orderForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('customer-name').value;
+                const phone = document.getElementById('customer-phone').value;
+                const time = document.getElementById('pickup-time').value;
+
+                // Build order details string
+                const cart = CartManager.getCart();
+                let orderDetails = "南興城早餐店 - 線上訂購單\n";
+                orderDetails += "=======================\n";
+                orderDetails += `取餐人姓名：${name}\n`;
+                orderDetails += `聯絡電話：${phone}\n`;
+                orderDetails += `預計取餐時間：${time}\n`;
+                orderDetails += "=======================\n\n";
+                orderDetails += "【訂單明細】\n";
+                
+                let total = 0;
+                cart.forEach(item => {
+                    let desc = '';
+                    if (item.flavorName && item.flavorName !== '原味') desc += item.flavorName + ' ';
+                    if (item.sizeName) desc += item.sizeName;
+                    if (!desc) desc = '標準';
+                    
+                    orderDetails += `- ${item.name} (${desc}) x ${item.quantity} = NT$ ${item.price * item.quantity}\n`;
+                    total += item.price * item.quantity;
+                });
+                orderDetails += `\n【總計金額】 NT$ ${total}\n`;
+
+                // Create mailto link
+                const subject = encodeURIComponent("南興城早餐店 - 新訂單來自 " + name);
+                const body = encodeURIComponent(orderDetails);
+                const mailtoLink = `mailto:jerry1204912049@gmail.com?subject=${subject}&body=${body}`;
+                
+                // Open user's email client
+                window.location.href = mailtoLink;
+
+                alert(`感謝您，${name}！系統正在為您開啟電子郵件應用程式。\n\n請確認信件內容無誤後「直接送出」即可，我們收到信件後會立刻為您準備餐點！`);
+                
+                // Clear the cart directly and return to homepage
+                CartManager.clearCart();
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+
+            renderCart();
+        });
+    </script>
+</body>
+</html>
